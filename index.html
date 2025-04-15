@@ -32,12 +32,14 @@
   <script>
     const logList = document.getElementById('logList');
 
+    // This function will add the log message to the page.
     function addLog(message) {
       const li = document.createElement('li');
       li.textContent = message;
       logList.prepend(li);
     }
 
+    // Listen for incoming messages from the console script
     window.addEventListener("message", function (event) {
       if (event.data && event.data.type === "activityLog") {
         addLog(event.data.payload);
