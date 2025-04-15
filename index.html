@@ -39,14 +39,14 @@
       logList.prepend(li);
     }
 
-    // Listen for incoming messages from the console script
+    // Listen for messages sent by the browser console script
     window.addEventListener("message", function (event) {
       if (event.data && event.data.type === "activityLog") {
         addLog(event.data.payload);
       }
     }, false);
 
-    // A small message to confirm the logger is working
+    // Confirm that the logger is active
     addLog('Logger is active. Start interacting with the page!');
   </script>
 </body>
