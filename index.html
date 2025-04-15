@@ -32,27 +32,28 @@
   <script>
     const logList = document.getElementById('logList');
 
-    // This function will add the log message to the page.
+    // Function to add logs to the page
     function addLog(message) {
       const li = document.createElement('li');
       li.textContent = message;
-      logList.prepend(li);
+      logList.prepend(li);  // Adds the log at the top
     }
 
-    // Poll for changes in localStorage
+    // Function to check and update the logs every second
     function checkLogs() {
       const newLog = localStorage.getItem('newLog');
       if (newLog) {
-        addLog(newLog);  // Add the new log to the page
-        localStorage.removeItem('newLog');  // Clear the stored log after adding it to the page
+        addLog(newLog);  // Display the log on the page
+        localStorage.removeItem('newLog');  // Remove the log after displaying it
       }
     }
 
-    // Run the log-checking function every second
+    // Poll for changes in localStorage every second
     setInterval(checkLogs, 1000);
 
-    // Confirm that the logger is active
+    // Initial confirmation that the logger is active
     addLog('Logger is active. Start interacting with the page!');
   </script>
 </body>
 </html>
+
