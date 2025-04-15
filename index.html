@@ -39,12 +39,17 @@
       logList.prepend(li);
     }
 
-    // Listen for messages sent by the browser console script
-    window.addEventListener("message", function (event) {
-      if (event.data && event.data.type === "activityLog") {
-        addLog(event.data.payload);
+    // Poll for changes in localStorage
+    function checkLogs() {
+      const newLog = localStorage.getItem('newLog');
+      if (newLog) {
+        addLog(newLog);  // Add the new log to the page
+        localStorage.removeItem('newLog');  // Clear the stored log after adding it to the page
       }
-    }, false);
+    }
+
+    // Run the log-checking function every second
+    setInterval(checkLogs, 1000);
 
     // Confirm that the logger is active
     addLog('Logger is active. Start interacting with the page!');
